@@ -25,7 +25,7 @@ $ make run
 $ docker exec -it --user root docker-ufirst_assigment-be mkdir var
 $ docker exec -it --user root docker-ufirst_assigment-be chmod -R 777 var
 $ docker exec -it --user root docker-ufirst_assigment-be chown -R appuser:appuser vendor
-$ composer-install
+$ make composer-install
 $ make ssh-be
 $ yarn install
 $ yarn encore production
