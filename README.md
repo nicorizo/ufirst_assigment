@@ -2,6 +2,10 @@
 
 UFirst Test by Nicolás Rizo. Please read the full readme first.
 
+Considerations:
+- I will send the full project zip. So you can run ASAP
+- I will give you repo URL 
+
 
 ## Tech Stack
 #### Docker (PHP 8.1, NGINX)
@@ -11,11 +15,31 @@ UFirst Test by Nicolás Rizo. Please read the full readme first.
 
 ## Setup
 
-Create docker containers.
+#### From repo
+
+```bash
+$ git clone https://github.com/nicorizo/ufirst_assigment
+$ cd ufirst_assigment
+$ make build
+$ make run
+$ docker exec -it --user root docker-ufirst_assigment-be mkdir var
+$ docker exec -it --user root docker-ufirst_assigment-be chmod -R 777 var
+$ docker exec -it --user root docker-ufirst_assigment-be chown -R appuser:appuser vendor
+$ composer-install
+$ make ssh-be
+$ yarn install
+$ yarn encore production
+```
+
+#### From Zip
 
 ```bash
 $ make build
 $ make run
+#issues with folders? run outside docker
+#$ docker exec -it --user root docker-ufirst_assigment-be mkdir var
+#$ docker exec -it --user root docker-ufirst_assigment-be chmod -R 777 var
+#$ docker exec -it --user root docker-ufirst_assigment-be chown -R appuser:appuser vendor
 ```
 
 ## Command
@@ -46,5 +70,10 @@ $ bin/console app:create-json-data-file
 $ make ssh-be
 $ php bin/phpunit
 ```
+
+### I think there is an error in the sentence of the test:
+#####  " There were 47748 total requests, 46014 GET, 1622 POST, 107 HEAD, 6 invalid "
+##### So 47748 - 46014 - 1622 - 107 - 6 = -1
+##### For me there are 106 HEAD request
 
 
