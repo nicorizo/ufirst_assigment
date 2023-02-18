@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+  docker-ufirst_assigment-web:
+    container_name: docker-ufirst_assigment-web
+    build:
+      context: ./docker/nginx
+      args:
+        UID: ${U_ID}
+    ports:
+      - 8009:80
+    volumes:
+      - ./public:/appdata/www/public
+      - ./vendor:/appdata/www/vendor
+    networks:
+      - docker-ufirst_assigment-network
+    depends_on:
+      - docker-ufirst_assigment-be
+
+  docker-ufirst_assigment-be:
+    container_name: docker-ufirst_assigment-be
+    build:
+      context: ./docker/php
+      args:
+        UID: ${U_ID}
+        ###> XDEBUG 3 ###
+        # Use your client IP here
+        # Linux: run "ip a | grep docker0"
+        # Windows (with WSL2): Run "grep nameserver /etc/resolv.conf  | cut -d ' ' -f2"
+        # MacOS: host.docker.internal
+    environment:
+      XDEBUG_CLIENT_HOST: 172.17.0.1
+      XDEBUG_CLIENT_PORT: 9003
+      PHP_IDE_CONFIG: serverName=docker-ufirst_assigment
+    volumes:
+      - ./:/appdata/www
+      - ./docker/php/xdebug-linux.ini:/usr/local/etc/php/conf.d/xdebug.ini # Linux users
+      #    - ./docker/php/xdebug-macos.ini:/usr/local/etc/php/conf.d/xdebug.ini # MacOS users
+      - ~/.ssh/id_rsa:/home/appuser/.ssh/id_rsa
+    networks:
+      - docker-ufirst_assigment-network
+
+
+
+networks:
+  docker-ufirst_assigment-network:
+    external: true
+

@@ -1,0 +1,24 @@
+log_show:
+  path: /
+  controller: Log\Adapter\Framework\Http\Controller\LogShowController
+  methods: [ GET ]
+
+log_get_request_http_method_distribution:
+  path: /get_request_http_method_distribution
+  controller: Log\Adapter\Framework\Http\Controller\LogGetRequestHTTPMethodDistributionController
+  methods: [ GET ]
+
+log_get_response_http_code_distribution:
+  path: /get_response_http_code_distribution
+  controller: Log\Adapter\Framework\Http\Controller\LogGetResponseHTTPCodeDistributionController
+  methods: [ GET ]
+
+log_get_response_by_code_and_size_distribution:
+  path: /log_get_response_by_code_and_size_distribution
+  controller: Log\Adapter\Framework\Http\Controller\LogGetResponseByCodeAndSizeDistributionController
+  methods: [ GET ]
+
+log_get_request_per_minute:
+  path: /log_get_request_per_minute
+  controller: Log\Adapter\Framework\Http\Controller\LogGetRequestPerMinuteController
+  methods: [ GET ]
